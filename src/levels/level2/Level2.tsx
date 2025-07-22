@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import elSol from "./assets/sol.svg";
 import laMuerte from "./assets/muerte.svg";
 import laTorre from "./assets/torre.png";
