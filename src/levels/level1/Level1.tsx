@@ -3,6 +3,7 @@ import {
   DndContext,
   closestCenter,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
@@ -87,13 +88,26 @@ export function Level1({ onNext }: Level1Props) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 5,
-      },
-    })
-  );
+  // Detectar si es táctil
+  const isTouch =
+    typeof window !== "undefined" &&
+    ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  const sensors = isTouch
+    ? useSensors(
+        useSensor(TouchSensor, {
+          activationConstraint: {
+            delay: 100,
+            tolerance: 5,
+          },
+        })
+      )
+    : useSensors(
+        useSensor(PointerSensor, {
+          activationConstraint: {
+            distance: 5,
+          },
+        })
+      );
 
   function handleDragEnd(event: any) {
     const { active, over } = event;
@@ -137,6 +151,7 @@ export function Level1({ onNext }: Level1Props) {
               maxWidth: 260,
               marginLeft: "auto",
               marginRight: "auto",
+              touchAction: "none", // Evita scroll accidental durante drag
             }}
           >
             {names.map((n) => (

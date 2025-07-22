@@ -4,6 +4,7 @@ import { CrystalBall } from "./components/CrystalBall";
 import { Level1 } from "./levels/level1";
 import { Level2 } from "./levels/level2";
 import { Level3 } from "./levels/level3";
+import { Level4 } from "./levels/level4";
 
 const possibleSteps = [
   "welcome",
@@ -13,6 +14,7 @@ const possibleSteps = [
   "level1",
   "level2",
   "level3",
+  "level4",
 ] as const;
 type AppStep = (typeof possibleSteps)[number];
 
@@ -176,7 +178,12 @@ export const App = () => {
         )}
         {step === "level3" && (
           <div style={{ width: "100%" }}>
-            <Level3 onNext={() => {}} />
+            <Level3 onNext={() => setStep("level4")} />
+          </div>
+        )}
+        {step === "level4" && (
+          <div style={{ width: "100%" }}>
+            <Level4 onNext={() => {}} />
           </div>
         )}
       </main>
