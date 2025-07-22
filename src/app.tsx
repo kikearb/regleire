@@ -5,6 +5,7 @@ import { Level1 } from "./levels/level1";
 import { Level2 } from "./levels/level2";
 import { Level3 } from "./levels/level3";
 import { Level4 } from "./levels/level4";
+import { Level5 } from "./levels/level5";
 
 const possibleSteps = [
   "welcome",
@@ -15,6 +16,8 @@ const possibleSteps = [
   "level2",
   "level3",
   "level4",
+  "level5",
+  "final",
 ] as const;
 type AppStep = (typeof possibleSteps)[number];
 
@@ -183,9 +186,15 @@ export const App = () => {
         )}
         {step === "level4" && (
           <div style={{ width: "100%" }}>
-            <Level4 onNext={() => {}} />
+            <Level4 onNext={() => setStep("level5")} />
           </div>
         )}
+        {step === "level5" && (
+          <div style={{ width: "100%" }}>
+            <Level5 onNext={() => setStep("final")} />
+          </div>
+        )}
+        {step === "final" && <div style={{ width: "100%" }}>Final</div>}
       </main>
     </div>
   );
