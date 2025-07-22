@@ -18,6 +18,7 @@ const books = [
   { id: "hp", title: "Harry Potter y la piedra filosofal" },
   { id: "acor", title: "Una corte de rosas y espinas" },
   { id: "alas", title: "Alas de sangre" },
+  { id: "lotr", title: "El señor de los anillos" },
   { id: "kvothe", title: "El nombre del viento" },
 ];
 
@@ -27,6 +28,7 @@ const phrases = [
     text: "Para una mente bien organizada, la muerte no es más que la siguiente gran aventura.",
   },
   { id: "acor", text: "No te inclines, no te doblegues, no te rompas." },
+  { id: "lotr", text: "Un anillo para gobernarlos a todos." },
   { id: "alas", text: "Mi casa. Mi trono. Mi reina." },
   { id: "kvothe", text: "Las palabras son monedas. Gástalas sabiamente." },
 ];
