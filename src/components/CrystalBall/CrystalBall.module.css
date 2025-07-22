@@ -1,0 +1,55 @@
+.crystalBallContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 0 1.5rem 0;
+  min-height: 140px;
+}
+
+.crystalHand {
+  position: absolute;
+  top: 60px;
+  width: 100px;
+  height: 120px;
+  opacity: 0;
+  z-index: 2;
+  animation: fadeInHandOpacity 2.5s forwards;
+}
+.handLeft {
+  left: 0px;
+  transform: scaleX(-1) rotate(-30deg);
+}
+.handRight {
+  right: 0px;
+  transform: rotate(-30deg);
+}
+
+@keyframes fadeInHandOpacity {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.crystalBallGlow {
+  background: radial-gradient(circle, #a259ff55 0%, #2d0036 80%);
+  border-radius: 50%;
+  padding: 1.2rem;
+  box-shadow: 0 0 32px 12px #a259ff55, 0 0 80px 10px #ffd70033;
+}
+
+.crystalBall {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 60% 40%, #fff6fa 60%, #a259ff 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 32px #ffd70088, 0 0 64px #a259ff44;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crystalBallContent {
+  font-size: 2.2rem;
+  text-align: center;
+}
+
