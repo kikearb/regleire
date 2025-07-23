@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import {
   DndContext,
   closestCenter,
@@ -86,7 +86,7 @@ function SortableItem({ id, name }: { id: string; name: string }) {
 export function Level1({ onNext }: Level1Props) {
   const [names, setNames] = useState(initialNames);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   // Detectar si es táctil
   const isTouch =
@@ -121,18 +121,25 @@ export function Level1({ onNext }: Level1Props) {
   function checkOrder() {
     if (names.join("-") === correctOrder.join("-")) {
       setSuccess(true);
-      setError("");
+      setFeedback("¡Correcto! Avanzando...");
       setTimeout(() => onNext(), 1200);
     } else {
-      setError("¡El orden no es correcto! Intenta de nuevo.");
+      setFeedback("¡El orden no es correcto! Intenta de nuevo.");
       setSuccess(false);
     }
   }
 
+  useEffect(() => {
+    document.getElementById("feedback")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [feedback]);
+
   return (
     <div class="level">
-      <h2>Nivel 1</h2>
-      <p style={{ marginBottom: "1.2rem" }}>
+      <h2 style={{ color: "#e0b3ff" }}>Primera prueba</h2>
+      <p style={{ marginBottom: "1.2rem", color: "#e0b3ff" }}>
         Ordena los nombres de{" "}
         <span style={{ color: "#ffd700" }}>mayor a menor edad</span> arrastrando
         cada elemento:
@@ -163,18 +170,17 @@ export function Level1({ onNext }: Level1Props) {
       <button class="level-btn" style={{ width: "100%" }} onClick={checkOrder}>
         Comprobar orden
       </button>
-      {success && (
+      {feedback && (
         <div
-          class="success"
-          autoFocus
-          style={{ color: "#ffd700", marginTop: 12, fontWeight: 600 }}
+          id="feedback"
+          className={success ? "success" : "error"}
+          style={{
+            marginTop: 12,
+            color: success ? "#4caf50" : "#ff5252",
+            fontWeight: 600,
+          }}
         >
-          ¡Correcto! Avanzando...
-        </div>
-      )}
-      {error && (
-        <div class="error" style={{ marginTop: 12 }}>
-          {error}
+          {feedback}
         </div>
       )}
     </div>

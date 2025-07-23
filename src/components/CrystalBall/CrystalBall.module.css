@@ -1,3 +1,32 @@
+.crystalBallContentAnimate {
+  animation: crystal-content-scale 1s cubic-bezier(0.5, 1.8, 0.5, 1.1);
+}
+
+@keyframes crystal-content-scale {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.18);
+  }
+  60% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Cuando el contenedor tiene la clase handsApproach, acercar las manos a la bola */
+.handsApproach.handLeft {
+  left: 60px;
+  transform: scaleX(-1) rotate(-40deg);
+}
+
+.handsApproach.handRight {
+  right: 60px;
+  transform: scaleX(1) rotate(-40deg);
+}
+
 .crystalBallContainer {
   position: relative;
   display: flex;
@@ -19,15 +48,33 @@
 .handLeft {
   left: 0px;
   transform: scaleX(-1) rotate(-30deg);
+  transition: left 0.7s cubic-bezier(0.5, 1.8, 0.5, 1.1),
+    transform 0.7s cubic-bezier(0.5, 1.8, 0.5, 1.1);
 }
 .handRight {
   right: 0px;
   transform: rotate(-30deg);
+  transition: right 0.7s cubic-bezier(0.5, 1.8, 0.5, 1.1),
+    transform 0.7s cubic-bezier(0.5, 1.8, 0.5, 1.1);
+}
+
+/* Cuando el header tiene la clase hands-approach, acercar las manos */
+.hands-approach .crystalHand.handLeft {
+  left: 40px;
+  transform: scaleX(-1) rotate(-10deg);
+}
+.hands-approach .crystalHand.handRight {
+  right: 40px;
+  transform: rotate(-10deg);
 }
 
 @keyframes fadeInHandOpacity {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .crystalBallGlow {
@@ -52,4 +99,3 @@
   font-size: 2.2rem;
   text-align: center;
 }
-

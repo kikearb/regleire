@@ -61,8 +61,8 @@ export function Level2({ onNext }: Level2Props) {
 
   return (
     <div class="level">
-      <h2>Nivel 2</h2>
-      <p style={{ marginBottom: "1.2rem" }}>
+      <h2 style={{ color: "#e0b3ff" }}>Segunda prueba</h2>
+      <p style={{ marginBottom: "1.2rem", color: "#e0b3ff" }}>
         ¿Qué carta representa el{" "}
         <span style={{ color: "#ffd700" }}>cambio y la transformación</span>?
       </p>

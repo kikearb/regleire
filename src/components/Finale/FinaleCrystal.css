@@ -1,0 +1,66 @@
+.finale-fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s cubic-bezier(0.5, 1.8, 0.5, 1.1);
+}
+.finale-message-anim {
+  animation: finale-message-fadein 0.7s cubic-bezier(0.5, 1.8, 0.5, 1.1);
+}
+/* Mensaje de la adivina */
+.finale-message {
+  color: #e0b3ff;
+  font-size: 1.25rem;
+  font-family: inherit;
+  text-align: center;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 8px #a259ff, 0 0 2px #fffbe6;
+  animation: finale-message-fadein 0.7s cubic-bezier(0.5, 1.8, 0.5, 1.1);
+}
+@keyframes finale-message-fadein {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.finale-crystal-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.7s cubic-bezier(0.5, 1.8, 0.5, 1.1),
+    transform 0.7s cubic-bezier(0.5, 1.8, 0.5, 1.1);
+}
+.finale-crystal-center.show {
+  opacity: 1;
+  transform: scale(1);
+}
+.crystal-ball-big {
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle at 60% 40%, #fff6fa 60%, #a259ff 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 48px #ffd700cc, 0 0 96px #a259ff88;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  animation: finale-crystal-glow 1.8s infinite alternate;
+}
+@keyframes finale-crystal-glow {
+  0% {
+    box-shadow: 0 0 24px #ffd70088, 0 0 48px #a259ff44;
+  }
+  100% {
+    box-shadow: 0 0 64px #ffd700cc, 0 0 128px #a259ff88;
+  }
+}

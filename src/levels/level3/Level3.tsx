@@ -49,8 +49,8 @@ export function Level3({ onNext }: Level3Props) {
 
   return (
     <div class="level">
-      <h2>Nivel 3</h2>
-      <p style={{ marginBottom: "1.2rem" }}>
+      <h2 style={{ color: "#e0b3ff" }}>Tercera prueba</h2>
+      <p style={{ marginBottom: "1.2rem", color: "#e0b3ff" }}>
         ¿Quién de los siguientes{" "}
         <span style={{ color: "#ffd700" }}>no pudo hablar nunca en parsel</span>
         ?

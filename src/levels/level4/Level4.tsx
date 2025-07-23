@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import {
   DndContext,
   closestCenter,
@@ -42,7 +42,7 @@ export function Level4({ onNext }: Level4Props) {
     kvothe: null,
   });
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   // Detectar si es táctil
   const isTouch =
@@ -106,18 +106,25 @@ export function Level4({ onNext }: Level4Props) {
     const correct = books.every((b) => dropped[b.id] === b.id);
     if (correct) {
       setSuccess(true);
-      setError("");
+      setFeedback("Correcto, todas las frases están en su libro.");
       setTimeout(() => onNext(), 1800);
     } else {
-      setError("¡Alguna frase no está en su libro correcto!");
+      setFeedback("¡Alguna frase no está en su libro correcto!");
       setSuccess(false);
     }
   }
 
+  useEffect(() => {
+    document.getElementById("feedback")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [feedback]);
+
   return (
     <div class="level">
-      <h2>Nivel 4</h2>
-      <p style={{ marginBottom: "1.2rem" }}>
+      <h2 style={{ color: "#e0b3ff" }}>Cuarta prueba</h2>
+      <p style={{ marginBottom: "1.2rem", color: "#e0b3ff" }}>
         Arrastra cada frase a su libro correspondiente:
       </p>
       <DndContext
@@ -169,17 +176,17 @@ export function Level4({ onNext }: Level4Props) {
       >
         Comprobar
       </button>
-      {success && (
+      {feedback && (
         <div
-          class="success"
-          style={{ color: "#ffd700", marginTop: 12, fontWeight: 600 }}
+          id="feedback"
+          className={success ? "success" : "error"}
+          style={{
+            marginTop: 12,
+            color: success ? "#4caf50" : "#ff5252",
+            fontWeight: 600,
+          }}
         >
-          ¡Correcto! Avanzando...
-        </div>
-      )}
-      {error && (
-        <div class="error" style={{ marginTop: 12 }}>
-          {error}
+          {feedback}
         </div>
       )}
     </div>

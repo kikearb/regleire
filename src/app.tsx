@@ -6,6 +6,8 @@ import { Level2 } from "./levels/level2";
 import { Level3 } from "./levels/level3";
 import { Level4 } from "./levels/level4";
 import { Level5 } from "./levels/level5";
+import { Finale } from "./components/Finale";
+import { End } from "./components/End";
 
 const possibleSteps = [
   "welcome",
@@ -17,7 +19,8 @@ const possibleSteps = [
   "level3",
   "level4",
   "level5",
-  "final",
+  "finale",
+  "end",
 ] as const;
 type AppStep = (typeof possibleSteps)[number];
 
@@ -35,16 +38,22 @@ export const App = () => {
     localStorage.setItem("mystic-step", step);
   }, [step]);
 
+  const handleRestart = () => {
+    setStep("welcome");
+    setName("");
+    localStorage.removeItem("mystic-step");
+  };
+
   return (
     <div class="escape-room mystic-bg">
-      <header class="tent-header">
+      <header class={`tent-header`}>
         <div class="mystic-halo">
           <div class="mystic-orb orb1" />
           <div class="mystic-orb orb2" />
           <div class="mystic-orb orb3" />
         </div>
         <h1>🔮 Mística 🔮</h1>
-        <CrystalBall>
+        <CrystalBall id="crystal-ball" step={step}>
           <span role="img" aria-label="Estrella">
             ✨
           </span>
@@ -127,6 +136,7 @@ export const App = () => {
               </span>
               , te estábamos esperando.
               <br />
+              <br />
               Escucha la voz del destino y responde con sinceridad.
               <br />
               <span style={{ color: "#ffd700", fontWeight: 500 }}>
@@ -142,7 +152,6 @@ export const App = () => {
             </button>
           </div>
         )}
-        {/* Aquí irá el juego real tras la explicación */}
         {step === "game" && (
           <div style={{ maxWidth: "270px", margin: "0 auto" }}>
             <p
@@ -165,7 +174,7 @@ export const App = () => {
               style={{ width: "100%" }}
               onClick={() => setStep("level1")}
             >
-              Ir al primer nivel
+              Adelante
             </button>
           </div>
         )}
@@ -191,10 +200,19 @@ export const App = () => {
         )}
         {step === "level5" && (
           <div style={{ width: "100%" }}>
-            <Level5 onNext={() => setStep("final")} />
+            <Level5 onNext={() => setStep("finale")} />
           </div>
         )}
-        {step === "final" && <div style={{ width: "100%" }}>Final</div>}
+        {step === "finale" && (
+          <div style={{ width: "100%" }}>
+            <Finale onEnd={() => setStep("end")} />
+          </div>
+        )}
+        {step === "end" && (
+          <div style={{ width: "100%" }}>
+            <End onClick={handleRestart} />
+          </div>
+        )}
       </main>
     </div>
   );

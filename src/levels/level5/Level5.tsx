@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 interface Card {
   id: string;
@@ -102,11 +102,19 @@ export function Level5({ onNext }: { onNext: () => void }) {
     }
   }
 
+  useEffect(() => {
+    document.getElementById("success")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [success]);
+
   return (
     <div class="level">
-      <h2>Nivel 5</h2>
-      <p style={{ marginBottom: "1.2rem" }}>
-        Encuentra todas las parejas Disney. ¡Toca dos cartas para descubrirlas!
+      <h2 style={{ color: "#e0b3ff" }}>Quinta prueba</h2>
+      <p style={{ marginBottom: "1.2rem", color: "#e0b3ff" }}>
+        Encuentra todas las parejas. <br />
+        ¡Toca dos cartas para descubrirlas!
       </p>
       <div
         style={{
@@ -160,6 +168,7 @@ export function Level5({ onNext }: { onNext: () => void }) {
       </div>
       {success && (
         <div
+          id="success"
           class="success"
           style={{ color: "#ffd700", marginTop: 12, fontWeight: 600 }}
         >
